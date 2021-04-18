@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'w95fa';
+  src: local('w95fa'), url(./w95fa.woff) format('woff');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
 .App {
   text-align: center;
+  
+  font-family: "w95fa", Verdana, Geneva, Tahoma, sans-serif;
+  
 }
 
 .App-logo {

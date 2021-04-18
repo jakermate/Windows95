@@ -12,6 +12,7 @@ const Root = styled.div`
     height: 100%;
     border-width: 1px;
     border-style: solid;
+    box-sizing: border-box;
     border-left-color: white;
     border-right-color: black;
     border-top-color: white;

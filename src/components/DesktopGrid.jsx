@@ -11,6 +11,7 @@ export default function DesktopGrid(props) {
 }
 const Grid = styled.div`
     display: flex;
+    padding: .5rem;
     flex-direction: column;
     justify-content: start;
     align-items: center;
