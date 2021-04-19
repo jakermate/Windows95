@@ -13,9 +13,9 @@ export default function Shortcut(props) {
             
           </div>
           <div>
-                  <span className="shortcut_string">
+                  <div className="shortcut_string">
                       {props.shortcut_string}
-                  </span>
+                  </div>
               </div>
       </ShortcutItem>
     </Draggable>
@@ -30,6 +30,7 @@ const ShortcutItem = styled.div`
     justify-content: start;
     .shortcut_string{
         font-size: 12px;
+        text-align: center;
     }
     .shortcut_image_container{
       padding-top: 12px;

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 export default function Desktop(props) {
     return (
-        <DesktopView>
+        <DesktopView id="win95_desktop">
             {props.children}
         </DesktopView>
     )
