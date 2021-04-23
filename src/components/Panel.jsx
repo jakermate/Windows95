@@ -1,13 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-export default function Panel(props) {
-    return (
-        <Root>
-            {props.children}
-        </Root>
-    )
-}
-const Root = styled.div`
+
+export default styled.div`
     width: 100%;
     height: 100%;
     position: relative;

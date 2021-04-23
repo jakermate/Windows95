@@ -12,11 +12,13 @@ import planet from "./windows98-icons/png/internet_connection_wiz-0.png"
 import Button from "./components/Button"
 import jm_logo from "./jm_logo_32.png"
 import RightClickMenu from "./components/RightClickMenu"
+import FileExplorer from "./components/windows/FileExplorer"
+import Window from "./components/windows/Window"
 function App() {
   // open window state
-  const [openApps, setOpenApps] = useState(["welcome"])
+  const [openApps, setOpenApps] = useState(["about"])
   const [closedApps, setClosedApps] = useState([
-    "asteroid_blaster",
+    "planet_blaster",
     "my_computer",
     "contact",
   ])
@@ -35,41 +37,79 @@ function App() {
   })
   function onRightClick(e) {
     e.preventDefault()
-    if(e.target.id === "win95_desktop"){
+    if (e.target.id === "win95_desktop") {
       setRightClickPosition([e.clientX, e.clientY])
-    setClickMenu(true)
+      setClickMenu(true)
     }
-
   }
   function onClick(e) {
-    if(e.target.id !== "context-menu"){
+    if (e.target.id !== "context-menu") {
+      // close context menu
       setClickMenu(false)
     }
   }
+
+  //  application lifecycle
+  function openApp(applicationString){
+    // this should check to see if application is already open, and if not, add to open applciations list.
+    if(!isAppOpen(applicationString)){
+      setOpenApps(old => [...old, applicationString])
+    }
+
+  }
+  function isAppOpen(app){
+    if(openApps.includes(app)){
+      return true
+    }
+    return false
+  }
+  const desktopIcons = [
+    {
+      string: "My Computer",
+      icon: system,
+      application: "my_computer"
+    },
+    {
+      string: "Resume.pdf",
+      icon: document,
+      application: "resume"
+    },
+    {
+      string: "About Jake",
+      icon: jm_logo,
+      application: "about"
+    },
+    {
+      string: "Planet Blaster",
+      icon: planet,
+      application: "planet_blaster"
+    }
+  ]
   return (
     <div className="windows-application">
       <Desktop>
         <Grid>
-          <Shortcut
-            shortcut_string={"My Computer"}
-            shortcut_icon={system}
-          ></Shortcut>
-          <Shortcut
-            shortcut_string={"Resume.pdf"}
-            shortcut_icon={document}
-          ></Shortcut>
-          <Shortcut
-            shortcut_string={"About Jake"}
-            shortcut_icon={jm_logo}
-          ></Shortcut>
-          <Shortcut
-            shortcut_string={"Asteroid Blaster"}
-            shortcut_icon={planet}
-          ></Shortcut>
+          {desktopIcons.map((iconObj) => {
+            return (
+              <Shortcut
+                action={openApp(iconObj.application)}
+                application={iconObj.application}
+                shortcut_string={iconObj.string}
+                shortcut_icon={iconObj.icon}
+              ></Shortcut>
+            )
+          })}
+  
         </Grid>
+        {/* open applications */}
         <Intro></Intro>
+        <Window x={300} y={400} width={400} height={340}></Window>
+        <FileExplorer></FileExplorer>
         <TaskBar openApps={openApps}></TaskBar>
-        <RightClickMenu position={rightclickPosition}  active={clickMenu}></RightClickMenu>
+        <RightClickMenu
+          position={rightclickPosition}
+          active={clickMenu}
+        ></RightClickMenu>
       </Desktop>
     </div>
   )

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
 import Panel from "./Panel"
 import InsetPanel from "./InsetPanel"
@@ -8,7 +8,13 @@ import AppStatusTile from "./AppStatusTile"
 import Button from "./Button"
 import testicon from "../windows98-icons/ico/key_webfile.ico"
 import windows from "../windows98-icons/ico/windows.ico"
+import StartMenu from "./StartMenu"
+
 export default function TaskBar(props) {
+    const [startMenu, startMenuSet] = useState(false)
+    function toggleStartMenu(){
+        startMenuSet(old => !old)
+    }
   return (
     <TaskbarView>
       <Panel>
@@ -19,7 +25,7 @@ export default function TaskBar(props) {
           }}
         >
           <div className="start-container">
-            <Button>
+            <Button action={toggleStartMenu}>
               <img
                 src={windows}
                 alt=""
@@ -28,8 +34,14 @@ export default function TaskBar(props) {
                 }}
               />
               <div style={{
-                  marginLeft: 2
+                  marginLeft: 2,
+                  fontSize: 12,
+                  fontWeight: 'bold'
               }}>Start</div>
+              {
+                  startMenu &&
+                <StartMenu></StartMenu>
+              }
             </Button>
           </div>
 
@@ -37,8 +49,9 @@ export default function TaskBar(props) {
             {props.openApps.map((openApp) => {
               return (
                 <AppStatusTile
+                  key={`windows_95_app_${openApp}`}
                   icon={testicon}
-                  app_title={"Test App"}
+                  app_title={openApp}
                 ></AppStatusTile>
               )
             })}
@@ -80,9 +93,6 @@ const TaskbarView = styled.div`
     justify-content: start;
     height: 100%;
   }
-  .applications-list {
-    flex-grow: 1;
-  }
   .taskbar-status {
     /* height: 100%; */
     box-sizing: border-box;
@@ -103,6 +113,8 @@ const TaskbarView = styled.div`
     height: 100%;
     flex-grow: 1;
     padding: 4px;
+    display: flex;
+    flex-direction: row;
     box-sizing: border-box;
   }
 `

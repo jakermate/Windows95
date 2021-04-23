@@ -2,13 +2,17 @@ import React from "react"
 import Panel from "./Panel"
 import styled from "styled-components"
 export default function Button(props) {
-  return <Root>{props.children}</Root>
+  return <Root onClick={e => props.action()} width={props.width} style={{
+    ...props.styles
+  }}>{props.children}</Root>
 }
 const Root = styled.button`
   background: none;
   display: flex;
+  width: ${props => props.width ? `${props.width}px` : "auto"};
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   position: relative;
   height: 28px;
   border-left-color: white;

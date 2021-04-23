@@ -27,9 +27,12 @@ const Root = styled.div`
     flex-grow: 1;
     max-width: 180px;
     height: 28px;
+    margin-right: 6px;
+    font-size: 12px;
     .flex-row{
         align-items: center;
         flex-direction: row;
         display: flex;
     }
+    
 `

@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import Panel from './Panel'
 export default function WindowControlBar(props) {
     return (
-        <Root className="control_bar handle">
-            <div className="control_bar_icon handle">
+        <Root className="control_bar">
+            <div className="control_bar_icon ">
                 <img src={props.icon} alt="" style={{
                     width: 14
                 }}/>
             </div>
-            <div className="control_bar_title handle">
+            <div className="control_bar_title ">
                 {props.app_title}
             </div>
             <div className="control_bar_controls">
@@ -40,6 +40,7 @@ const Root = styled.div`
     background: linear-gradient(to right, #000088,  #1084d0);
     margin: 3px;
     display: flex;
+    position: relative;
     color: black;
     flex-direction: flex-row;
 
@@ -51,6 +52,7 @@ const Root = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
+        pointer-events: none;
     }
     .control_bar_controls{
         display: flex;
@@ -63,6 +65,7 @@ const Root = styled.div`
         flex-direction: row;
         align-items: center;
         margin: 0 3px;
+        pointer-events: none;
     }
 `
 const SquareButton = styled.div`
