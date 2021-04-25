@@ -12,6 +12,7 @@ import StartMenu from "./StartMenu"
 
 export default function TaskBar(props) {
     const [startMenu, startMenuSet] = useState(false)
+    console.log(props)
     function toggleStartMenu(){
         startMenuSet(old => !old)
     }
@@ -46,12 +47,12 @@ export default function TaskBar(props) {
           </div>
 
           <div className="taskbar_applications_list">
-            {props.openApps.map((openApp) => {
+            {props.openApps.map((openAppObject) => {
               return (
                 <AppStatusTile
-                  key={`windows_95_app_${openApp}`}
+                  key={`windows_95_app_${openAppObject.id}`}
                   icon={testicon}
-                  app_title={openApp}
+                  app_title={openAppObject.app_title}
                 ></AppStatusTile>
               )
             })}

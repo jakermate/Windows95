@@ -14,14 +14,12 @@ import jm_logo from "./jm_logo_32.png"
 import RightClickMenu from "./components/RightClickMenu"
 import FileExplorer from "./components/windows/FileExplorer"
 import Window from "./components/windows/Window"
+import Application from "./components/apps/Application"
+import WindowManager from "./components/WindowManager"
 function App() {
   // open window state
-  const [openApps, setOpenApps] = useState(["about"])
-  const [closedApps, setClosedApps] = useState([
-    "planet_blaster",
-    "my_computer",
-    "contact",
-  ])
+  const [openApps, setOpenApps] = useState([new Application('about', jm_logo, "About me.")])
+ 
   // selected desktop icon state
   const [selectedShortcut, setSelectedShortcut] = useState(null)
   // right click option menu
@@ -48,14 +46,28 @@ function App() {
       setClickMenu(false)
     }
   }
-
+useEffect(()=>{
+  console.log(openApps)
+},[console.log(openApps)])
   //  application lifecycle
   function openApp(applicationString){
     // this should check to see if application is already open, and if not, add to open applciations list.
-    if(!isAppOpen(applicationString)){
-      setOpenApps(old => [...old, applicationString])
+    if(openApps.length < 12){
+      // get application reference object
+      console.log('opening ' + applicationString)
+      let index = apps.map(appObj=>appObj.application).indexOf(applicationString)
+      setOpenApps(old => [...old, new Application(applicationString, apps[index].icon, apps[index].string ) ])
     }
 
+  }
+  function closeApp(application_id){
+    console.log('closing app with id: ' + application_id)
+      // get index via app ID
+      let index = openApps.map(appObj=>appObj.id).indexOf(application_id)
+      // remove from array and set to state
+      let newOpenApps = [...openApps]
+      newOpenApps.splice(index ,1)
+      setOpenApps(newOpenApps)
   }
   function isAppOpen(app){
     if(openApps.includes(app)){
@@ -63,7 +75,10 @@ function App() {
     }
     return false
   }
-  const desktopIcons = [
+  useEffect(()=>{
+    console.log(openApps)
+  },[openApps])
+  const apps = [
     {
       string: "My Computer",
       icon: system,
@@ -89,22 +104,20 @@ function App() {
     <div className="windows-application">
       <Desktop>
         <Grid>
-          {desktopIcons.map((iconObj) => {
+          {apps.map((appObj) => {
             return (
               <Shortcut
-                action={openApp(iconObj.application)}
-                application={iconObj.application}
-                shortcut_string={iconObj.string}
-                shortcut_icon={iconObj.icon}
+                application={appObj.application}
+                shortcut_string={appObj.string}
+                shortcut_icon={appObj.icon}
+                openApp={openApp}
               ></Shortcut>
             )
           })}
   
         </Grid>
         {/* open applications */}
-        <Intro></Intro>
-        <Window x={300} y={400} width={400} height={340}></Window>
-        <FileExplorer></FileExplorer>
+       <WindowManager apps={openApps} closeApp={closeApp}></WindowManager>
         <TaskBar openApps={openApps}></TaskBar>
         <RightClickMenu
           position={rightclickPosition}

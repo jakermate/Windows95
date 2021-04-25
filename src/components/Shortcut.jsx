@@ -4,7 +4,7 @@ import styled from "styled-components"
 export default function Shortcut(props) {
   return (
     // <Draggable>
-    <ShortcutItem active={props.active}>
+    <ShortcutItem active={props.active} onClick={e => props.openApp(props.application)}>
       <div className="shortcut_image_container">
         <img
           src={props.shortcut_icon}

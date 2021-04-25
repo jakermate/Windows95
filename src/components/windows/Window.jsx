@@ -16,7 +16,7 @@ export default function Window(props) {
         }}
       >
         <Panel>
-          <WindowControlBar></WindowControlBar>
+          <WindowControlBar closeApp={props.closeApp} application_id={props.app.id}></WindowControlBar>
           {props.children}
         </Panel>
       </Div>

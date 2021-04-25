@@ -25,7 +25,7 @@ export default function WindowControlBar(props) {
                         
                     </Panel>
                 </SquareButton>
-                <SquareButton>
+                <SquareButton onClick={e => props.closeApp(props.application_id)}>
                     <Panel>
                         x
                     </Panel>
@@ -71,4 +71,5 @@ const Root = styled.div`
 const SquareButton = styled.div`
     width: 16px;
     height: 16px;
+    cursor: pointer;
 `
