@@ -18,7 +18,7 @@ import Application from "./components/apps/Application"
 import WindowManager from "./components/WindowManager"
 function App() {
   // open window state
-  const [openApps, setOpenApps] = useState([new Application('about', jm_logo, "About me.")])
+  const [openApps, updateOpenApps] = useState([new Application('about', jm_logo, "About me.")])
  
   // selected desktop icon state
   const [selectedShortcut, setSelectedShortcut] = useState(null)
@@ -46,17 +46,14 @@ function App() {
       setClickMenu(false)
     }
   }
-useEffect(()=>{
-  console.log(openApps)
-},[console.log(openApps)])
+
   //  application lifecycle
   function openApp(applicationString){
     // this should check to see if application is already open, and if not, add to open applciations list.
     if(openApps.length < 12){
       // get application reference object
-      console.log('opening ' + applicationString)
       let index = apps.map(appObj=>appObj.application).indexOf(applicationString)
-      setOpenApps(old => [...old, new Application(applicationString, apps[index].icon, apps[index].string ) ])
+      updateOpenApps(old => [...old, new Application(applicationString, apps[index].icon, apps[index].string) ])
     }
 
   }
@@ -67,13 +64,14 @@ useEffect(()=>{
       // remove from array and set to state
       let newOpenApps = [...openApps]
       newOpenApps.splice(index ,1)
-      setOpenApps(newOpenApps)
+      updateOpenApps(newOpenApps)
   }
-  function isAppOpen(app){
-    if(openApps.includes(app)){
-      return true
-    }
-    return false
+  
+  function modifyApp(app_id, updated_app_object){
+    let index = openApps.map(appObj=>appObj.id).indexOf(app_id)
+    let newOpenApps = [...openApps]
+      newOpenApps.splice(index, 1, updated_app_object)
+      updateOpenApps(newOpenApps)
   }
   useEffect(()=>{
     console.log(openApps)
@@ -117,8 +115,8 @@ useEffect(()=>{
   
         </Grid>
         {/* open applications */}
-       <WindowManager apps={openApps} closeApp={closeApp}></WindowManager>
-        <TaskBar openApps={openApps}></TaskBar>
+       <WindowManager apps={openApps} closeApp={closeApp} modifyApp={modifyApp}></WindowManager>
+        <TaskBar openApps={openApps} modifyApp={modifyApp}></TaskBar>
         <RightClickMenu
           position={rightclickPosition}
           active={clickMenu}

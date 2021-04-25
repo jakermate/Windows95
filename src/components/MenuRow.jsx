@@ -13,6 +13,7 @@ export default function MenuRow(props) {
     )
 }
 const Root = styled.div`
+    width: 100%;
     ul{
         display: flex;
         flex-direction: row;

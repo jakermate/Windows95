@@ -8,14 +8,10 @@ import WindowControlBar from "../WindowControlBar"
 import logo from '../../jm_logo_32.png'
 import MenuRow from "../MenuRow"
 export default function Intro(props) {
-  const [minimized, toggleMinimized] = useState(false)
   return (
-    <Draggable enableUserSelectHack handle={".control_bar"}>
       <Root>
-        <Panel minimized={minimized}>
           <div className="flex-col handle">
-            {/* app bar */}
-            <WindowControlBar icon={logo} app_title={"About Jake Miller"}></WindowControlBar>
+       
             {/* menu row */}
             <MenuRow></MenuRow>
             <Hr style={{
@@ -30,18 +26,12 @@ export default function Intro(props) {
               }}>Cancel</Button>
             </div>
           </div>
-        </Panel>
       </Root>
-    </Draggable>
   )
 }
 const Root = styled.div`
-  position: absolute;
-  display: ${props => props.minimized ? 'none' : "block"};
-  top: 25vh;
-  left: 25vw;
-  height: 50vh;
-  width: 50vw;
+  position: relative;
+ 
   display: flex;
   .window_content {
     flex-grow: 1;

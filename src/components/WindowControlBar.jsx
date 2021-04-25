@@ -14,18 +14,18 @@ export default function WindowControlBar(props) {
             </div>
             <div className="control_bar_controls">
                 <SquareButton>
-                    <Panel>
+                    <Panel onClick={e => props.modifyApp(props.app.id, {...props.app, minimized: true})}>
                     _
                     </Panel>
                 </SquareButton>
-                <SquareButton style={{
+                <SquareButton onClick={e => props.modifyApp(props.app.id, {...props.app, maximized: true})} style={{
                     marginRight: '3px'
                 }}>
                     <Panel>
                         
                     </Panel>
                 </SquareButton>
-                <SquareButton onClick={e => props.closeApp(props.application_id)}>
+                <SquareButton onClick={e => props.closeApp(props.app.id)}>
                     <Panel>
                         x
                     </Panel>

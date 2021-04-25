@@ -53,6 +53,8 @@ export default function TaskBar(props) {
                   key={`windows_95_app_${openAppObject.id}`}
                   icon={testicon}
                   app_title={openAppObject.app_title}
+                  modifyApp={props.modifyApp}
+                  app={openAppObject}
                 ></AppStatusTile>
               )
             })}
@@ -107,8 +109,10 @@ const TaskbarView = styled.div`
     height: 100%;
   }
   .time {
-    font-size: 12px;
+    font-size: 10px;
     margin-right: 4px;
+    letter-spacing: 1px;
+    font-weight: 500;
   }
   .taskbar_applications_list {
     height: 100%;
