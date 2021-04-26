@@ -2,6 +2,7 @@ import React from 'react'
 import AboutMeApplication from './Intro'
 import Window from './Window'
 import PlanetBlaster from './PlanetBlaster'
+import InternetExplorer from '../apps/InternetExplorer'
 
 export default function Application(props) {
     return (
@@ -14,6 +15,10 @@ export default function Application(props) {
             {
                 props.app.app_name === "planet_blaster" &&
                 <PlanetBlaster></PlanetBlaster>
+            }
+            {
+                props.app.app_name === "internet_explorer" &&
+                <InternetExplorer></InternetExplorer>
             }
         </Window>
     )

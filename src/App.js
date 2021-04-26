@@ -16,9 +16,10 @@ import FileExplorer from "./components/windows/FileExplorer"
 import Window from "./components/windows/Window"
 import Application from "./components/apps/Application"
 import WindowManager from "./components/WindowManager"
+import internet_explorer from './windows98-icons/ico/msie1.ico'
 function App() {
   // open window state
-  const [openApps, updateOpenApps] = useState([new Application('about', jm_logo, "About me.")])
+  const [openApps, updateOpenApps] = useState([new Application('about', jm_logo, "About Jake Miller.")])
  
   // selected desktop icon state
   const [selectedShortcut, setSelectedShortcut] = useState(null)
@@ -88,7 +89,7 @@ function App() {
       application: "resume"
     },
     {
-      string: "About Jake",
+      string: "About Jake Miller",
       icon: jm_logo,
       application: "about"
     },
@@ -96,6 +97,11 @@ function App() {
       string: "Planet Blaster",
       icon: planet,
       application: "planet_blaster"
+    },
+    {
+      string: "Internet Explorer",
+      icon: internet_explorer,
+      application: "internet_explorer"
     }
   ]
   return (

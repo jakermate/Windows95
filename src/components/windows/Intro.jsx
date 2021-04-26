@@ -9,15 +9,20 @@ import logo from '../../jm_logo_32.png'
 import MenuRow from "../MenuRow"
 export default function Intro(props) {
   return (
-      <Root>
-          <div className="flex-col handle">
+      <Root className="windows_95_application_wrapper" style={{
+        // width: props.width || 400
+      }}>
+          <div className="flex-col handle grow">
        
             {/* menu row */}
             <MenuRow></MenuRow>
             <Hr style={{
               marginTop: '4px'
             }}></Hr>
-            <div className="window_content"></div>
+            <div className="window_content">
+              <h2>About Jake Miller</h2>
+              <p>I'm a Jake.</p>
+            </div>
           
             <div className="window_controls">
             <Button width={76}>Ok</Button>
@@ -31,9 +36,13 @@ export default function Intro(props) {
 }
 const Root = styled.div`
   position: relative;
- 
+  flex-grow: 1;
   display: flex;
   .window_content {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+  .grow{
     flex-grow: 1;
   }
   .window_controls{

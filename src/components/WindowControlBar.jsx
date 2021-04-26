@@ -2,15 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import Panel from './Panel'
 export default function WindowControlBar(props) {
+    console.log(props)
     return (
         <Root className="control_bar">
             <div className="control_bar_icon ">
-                <img src={props.icon} alt="" style={{
+                <img src={props.app.icon} alt="" style={{
                     width: 14
                 }}/>
             </div>
             <div className="control_bar_title ">
-                {props.app_title}
+                {props.app.app_title}
             </div>
             <div className="control_bar_controls">
                 <SquareButton>
