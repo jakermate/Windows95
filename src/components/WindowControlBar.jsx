@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Panel from './Panel'
 export default function WindowControlBar(props) {
-    console.log(props)
     return (
         <Root className="control_bar">
             <div className="control_bar_icon ">

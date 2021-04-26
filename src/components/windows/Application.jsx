@@ -6,7 +6,7 @@ import InternetExplorer from '../apps/InternetExplorer'
 
 export default function Application(props) {
     return (
-        <Window stack={props.stack} modifyApp={props.modifyApp} reorderStack={props.reorderStack} visible={props.app.visibility} closeApp={props.closeApp} app={props.app}>
+        <Window width={props.app.width} height={props.app.height} stack={props.stack} modifyApp={props.modifyApp} reorderStack={props.reorderStack} visible={props.app.visibility} closeApp={props.closeApp} app={props.app}>
             {/* selectively render different application content into window (use props.app for reference object) */}
             {
                 props.app.app_name === "about" &&

@@ -81,7 +81,9 @@ function App() {
     {
       string: "My Computer",
       icon: system,
-      application: "my_computer"
+      application: "my_computer",
+      width: 500,
+      height: 300
     },
     {
       string: "Resume.pdf",

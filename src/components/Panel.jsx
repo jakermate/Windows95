@@ -7,6 +7,9 @@ export default styled.div`
     position: relative;
     border-width: 1px;
     border-style: solid;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
     box-sizing: border-box;
     border-left-color: white;
     border-right-color: black;

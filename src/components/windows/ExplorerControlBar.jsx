@@ -6,8 +6,8 @@ export default function ExplorerControlBar(props) {
     return (
         <div>
             <ul>
-                <li><Button string={"Back"}></Button></li>
-                <li><Button string={"Forward"}></Button></li>
+                <li><Button  string={"Back"}></Button></li>
+                <li><Button  string={"Forward"}></Button></li>
             </ul>
         </div>
     )
